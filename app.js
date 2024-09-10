@@ -1,5 +1,6 @@
 import express from "express";
 // import bodyParser from "body-parser";
+import { initWaterLevelWebSocket } from "./sockets/waterLevelSocket.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
@@ -59,8 +60,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Something went wrong!" });
 });
 
-
-
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 const WS_PORT = process.env.WS_PORT || 3030;
@@ -68,7 +67,8 @@ const WS_PORT = process.env.WS_PORT || 3030;
 
 // Start WebSocket server
 // startWebSocketServer(WS_PORT);
-websocketSetup( WS_PORT );
+websocketSetup(WS_PORT);
+initWaterLevelWebSocket(server);
 
 server.listen(PORT, () => {
   console.log(`HTTP server running on port ${PORT}`);

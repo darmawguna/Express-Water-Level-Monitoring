@@ -3,7 +3,14 @@ import { Server as WebSocketServer } from "socket.io";
 export let waterLevelsNamespace;
 
 export function initWaterLevelWebSocket(server) {
-    const io = new WebSocketServer(server);
+  const io = new WebSocketServer(server, {
+    cors: {
+      origin: "http://localhost:5173", // Ganti dengan URL frontend Anda
+      methods: ["GET", "POST"],
+      // allowedHeaders: ["my-custom-header"],
+      credentials: true,
+    },
+  });
 
   // Namespace untuk WebSocket di route /water-levels
   waterLevelsNamespace = io.of("/water-levels");
@@ -33,8 +40,8 @@ export function initWaterLevelWebSocket(server) {
     socket.on("waterLevel", (msg) => {
       console.log("Received water level on /water-levels: " + msg);
       socket.emit("response", "water level received: " + msg);
+      socket.emit("testing");
     });
   });
-
   return io;
 }

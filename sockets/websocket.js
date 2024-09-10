@@ -1,14 +1,15 @@
 import { WebSocketServer } from "ws";
+import shareDataWaterLevel from "../utils/shareDataWaterLevel.js";
 
 const websocketSetup = (port) => {
   const wss = new WebSocketServer({ port });
 
   wss.on("connection", (ws) => {
     console.log("New WebSocket connection");
-
+    // TODO tambahkan logika dari waterlevelcontroller untuk dapat menyimpan data ke database
     ws.on("message", (message) => {
       const data = JSON.parse(message);
-      console.log(data);
+      shareDataWaterLevel(data);
       ws.send("Message received");
     });
 
