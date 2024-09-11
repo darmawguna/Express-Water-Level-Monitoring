@@ -37,7 +37,7 @@ export const getSensor = async (req, res) => {
 
 export const createSensor = async (req, res) => {
   const newSensor = req.body;
-  console.log(newSensor);
+  // console.log(newSensor);
   if (
     !newSensor.description ||
     !newSensor.installation_date ||

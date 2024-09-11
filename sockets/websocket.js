@@ -1,5 +1,6 @@
 import { WebSocketServer } from "ws";
 import shareDataWaterLevel from "../utils/shareDataWaterLevel.js";
+import saveDataWaterLevel from "../utils/saveDataWaterLevel.js";
 
 const websocketSetup = (port) => {
   const wss = new WebSocketServer({ port });
@@ -10,6 +11,7 @@ const websocketSetup = (port) => {
     ws.on("message", (message) => {
       const data = JSON.parse(message);
       shareDataWaterLevel(data);
+      saveDataWaterLevel(data);
       ws.send("Message received");
     });
 
