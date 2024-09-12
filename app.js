@@ -15,9 +15,7 @@ const allowedOrigins = [
   "http://localhost:5173", // Aplikasi Web saat pengembangan
   "http://192.168.100.126:5173", // alamat IP laptop Nanda
   "http://192.168.100.126", // alamat IP laptop klien
-  // 'capacitor://localhost', // Aplikasi Mobile dengan Capacitor
-  // 'ionic://localhost', // Aplikasi Mobile dengan Ionic
-  // 'file://' // Aplikasi Mobile yang diakses dari file lokal
+  "https:/fmews.wefgis-sync.com",
 ];
 
 // Opsi CORS
@@ -61,8 +59,8 @@ app.use((err, req, res, next) => {
 });
 
 const server = http.createServer(app);
-const PORT = process.env.PORT || 3000;
-const WS_PORT = process.env.WS_PORT || 3030;
+const PORT =  3000;
+const WS_PORT =  3030;
 // export default server;
 
 // Start WebSocket server
