@@ -8,7 +8,6 @@ const saveDataWaterLevel = async (data) => {
     return console.log("data not completed");
   }
   const insertId = await WaterLevel.create(newWaterLevel);
-  console.log("insertId:", insertId);
 
   return;
 };

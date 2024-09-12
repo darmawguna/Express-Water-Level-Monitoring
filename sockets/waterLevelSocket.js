@@ -38,7 +38,7 @@ export function initWaterLevelWebSocket(server) {
     });
 
     socket.on("waterLevel", (msg) => {
-      console.log("Received water level on /water-levels: " + msg);
+      // console.log("Received water level on /water-levels: " + msg);
       socket.emit("response", "water level received: " + msg);
       socket.emit("testing");
     });
