@@ -1,4 +1,5 @@
 import { Server as WebSocketServer } from "socket.io";
+import shareDataWaterLevel from "../utils/shareDataWaterLevel.js";
 
 export let waterLevelsNamespace;
 
@@ -37,10 +38,9 @@ export function initWaterLevelWebSocket(server) {
       socket.emit("sensorSelected", `You have joined the room for sensor: ${sensorId}`);
     });
 
-    socket.on("waterLevel", (msg) => {
-      // console.log("Received water level on /water-levels: " + msg);
-      socket.emit("response", "water level received: " + msg);
-      socket.emit("testing");
+    socket.on("waterLevelFromServer", (msg) => {
+      console.log("data yang didapatkan: ", msg);
+      shareDataWaterLevel(msg);
     });
   });
   return io;

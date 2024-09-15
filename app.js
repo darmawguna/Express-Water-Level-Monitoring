@@ -16,6 +16,7 @@ const allowedOrigins = [
   "http://192.168.100.126:5173", // alamat IP laptop Nanda
   "http://192.168.100.126", // alamat IP laptop klien
   "https:/fmews.wefgis-sync.com",
+  "http:/fmews.wefgis-sync.com",
 ];
 
 // Opsi CORS
@@ -59,13 +60,8 @@ app.use((err, req, res, next) => {
 });
 
 const server = http.createServer(app);
-const PORT =  3000;
-const WS_PORT =  3030;
-// export default server;
+const PORT = 3000;
 
-// Start WebSocket server
-// startWebSocketServer(WS_PORT);
-websocketSetup(WS_PORT);
 initWaterLevelWebSocket(server);
 
 server.listen(PORT, () => {
