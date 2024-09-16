@@ -4,8 +4,6 @@ import { initWaterLevelWebSocket } from "./sockets/waterLevelSocket.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
-// import { WebSocketServer } from "ws";
-import websocketSetup from "./sockets/websocket.js";
 
 dotenv.config();
 
@@ -58,13 +56,8 @@ app.use((err, req, res, next) => {
 });
 
 const server = http.createServer(app);
-const PORT = process.env.PORT || 3000;
-const WS_PORT = process.env.WS_PORT || 3030;
-// export default server;
+const PORT = 3000;
 
-// Start WebSocket server
-// startWebSocketServer(WS_PORT);
-websocketSetup(WS_PORT);
 initWaterLevelWebSocket(server);
 
 server.listen(PORT, () => {

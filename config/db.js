@@ -9,10 +9,10 @@ terhubung dengan config dotenv
 */
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: "api.fmews.wefgis-sync.com",
+  user: "fmews",
+  password: "fwPV8vNU94ZrE8VcOkKe",
+  database: "db-fmews",
 });
 
 connection.connect((err) => {
