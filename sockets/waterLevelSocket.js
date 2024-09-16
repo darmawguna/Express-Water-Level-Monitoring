@@ -1,4 +1,5 @@
 import { Server as WebSocketServer } from "socket.io";
+
 import shareDataWaterLevel from "../utils/shareDataWaterLevel.js";
 
 export let waterLevelsNamespace;
@@ -6,7 +7,7 @@ export let waterLevelsNamespace;
 export function initWaterLevelWebSocket(server) {
   const io = new WebSocketServer(server, {
     cors: {
-      origin: "https://fmews.wefgis-sync.com", // Ganti dengan URL frontend Anda
+      origin: "https:/fmews.wefgis-sync.com", // Ganti dengan URL frontend Anda
       methods: ["GET", "POST"],
       // allowedHeaders: ["my-custom-header"],
       credentials: true,
@@ -40,6 +41,9 @@ export function initWaterLevelWebSocket(server) {
 
     socket.on("waterLevelFromServer", (msg) => {
       console.log("data yang didapatkan: ", msg);
+      shareDataWaterLevel(msg);
+    });
+    socket.on("waterLevelFromServer", (msg) => {
       shareDataWaterLevel(msg);
     });
   });
