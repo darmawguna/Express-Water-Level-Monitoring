@@ -4,8 +4,6 @@ import { initWaterLevelWebSocket } from "./sockets/waterLevelSocket.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
-// import { WebSocketServer } from "ws";
-import websocketSetup from "./sockets/websocket.js";
 
 dotenv.config();
 

@@ -9,14 +9,10 @@ terhubung dengan config dotenv
 */
 
 const connection = mysql.createConnection({
-  // host: "api.fmews.wefgis-snyc.com",
-  // user: "fmews",
-  // password: "fwPV8vNU94ZrE8VcOkKe",
-  // database: "db-fmews",
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "water_level_monitoring",
+  host: "api.fmews.wefgis-sync.com",
+  user: "fmews",
+  password: "fwPV8vNU94ZrE8VcOkKe",
+  database: "db-fmews",
 });
 
 connection.connect((err) => {
