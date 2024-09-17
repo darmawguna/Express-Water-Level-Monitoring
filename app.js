@@ -4,6 +4,8 @@ import { initWaterLevelWebSocket } from "./sockets/waterLevelSocket.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
+import path from "path"; // tambahkan ini untuk meng-handle path file
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -13,9 +15,13 @@ const allowedOrigins = [
   "http://localhost:5173", // Aplikasi Web saat pengembangan
   "http://192.168.100.126:5173", // alamat IP laptop Nanda
   "http://192.168.100.126", // alamat IP laptop klien
-  "https:/fmews.wefgis-sync.com",
-  "http:/fmews.wefgis-sync.com",
+  "https://fmews.wefgis-sync.com",
+  "http://fmews.wefgis-sync.com",
 ];
+
+// Mendapatkan path direktori saat ini secara dinamis
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Opsi CORS
 const corsOptions = {
@@ -47,8 +53,9 @@ app.use("/api/sensors", sensorRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/waterlevels", waterLevelRoutes);
 app.use("/alerts", alertRoutes);
+// Serve index.html saat route root diakses
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Error handling middleware (optional)
