@@ -15,8 +15,11 @@ const allowedOrigins = [
   "http://localhost:5173", // Aplikasi Web saat pengembangan
   "http://192.168.100.126:5173", // alamat IP laptop Nanda
   "http://192.168.100.126", // alamat IP laptop klien
+<<<<<<< HEAD
   "https://fmews.wefgis-sync.com",
   "http://fmews.wefgis-sync.com",
+=======
+>>>>>>> 2aff424dd3b996e40147da6aed26a8c359bc53fc
 ];
 
 // Mendapatkan path direktori saat ini secara dinamis
