@@ -4,23 +4,30 @@ import dotenv from "dotenv";
 dotenv.config();
 
 /*
-db berfungsi untuk melakukan setup koneksi ke database
-terhubung dengan config dotenv
+db berfungsi untuk melakukan setup koneksi pool ke database
+dengan menggunakan config dari dotenv
 */
 
-const connection = mysql.createConnection({
-  host: "api.fmews.wefgis-sync.com",
-  user: "fmews",
-  password: "fwPV8vNU94ZrE8VcOkKe",
-  database: "db-fmews",
+const pool = mysql.createPool({
+  host:  "",
+  user:  "",
+  password:  "",
+  database:  "",
+  waitForConnections: true, // Menunggu jika semua koneksi sedang digunakan
+  connectionLimit: 10, // Maksimum jumlah koneksi dalam pool
+  queueLimit: 0, // Tidak ada limit antrian
 });
 
-connection.connect((err) => {
+pool.getConnection((err, connection) => {
   if (err) {
-    console.error("Error connecting to the database:", err);
+    console.error("Error getting connection from pool:", err);
     process.exit(1);
   }
+
   console.log("Connected to the database");
+
+  // Jangan lupa untuk melepaskan koneksi kembali ke pool setelah selesai menggunakannya
+  connection.release();
 });
 
-export default connection;
+export default pool;
