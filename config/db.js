@@ -9,10 +9,10 @@ dengan menggunakan config dari dotenv
 */
 
 const pool = mysql.createPool({
-  host:  "",
-  user:  "",
-  password:  "",
-  database:  "",
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "water_level_monitoring",
   waitForConnections: true, // Menunggu jika semua koneksi sedang digunakan
   connectionLimit: 10, // Maksimum jumlah koneksi dalam pool
   queueLimit: 0, // Tidak ada limit antrian
